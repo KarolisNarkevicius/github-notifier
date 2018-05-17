@@ -16,5 +16,5 @@ Route::get('/', function () {
 });
 
 Route::post('/notify', function() {
-    return response('Yup', 200);
+    return "OK";
 });
