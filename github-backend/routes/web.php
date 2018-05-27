@@ -15,6 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/notify', function() {
-    return "OK";
+Route::group(['namespace' => 'Webhooks'], function() {
+    Route::get('/notify', 'GitHubController@notify');
+    Route::post('/notify', 'GitHubController@notify');
 });
+
+Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');
+Route::redirect('home', 'repositories');
+
+Route::resource('repositories', 'RepositoriesController');
